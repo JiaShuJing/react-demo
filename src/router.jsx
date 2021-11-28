@@ -1,7 +1,7 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
 import { reportManage } from "./pages/reportManage"
-import { AutoTest } from "./pages/autoTest"
+import { AutoTest } from "@/pages/autoTest"
 import { onlineQuality } from "./pages/onlineQuality"
 import { Interview } from "./pages/interview"
 
