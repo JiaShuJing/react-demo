@@ -1,13 +1,13 @@
 import React from "react"
 import { Layout, Menu } from "antd"
 import { css } from "@emotion/css"
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from "@ant-design/icons"
+import { UserOutlined, VideoCameraOutlined, UploadOutlined, MailOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom"
 import { MyContent } from "./MyContent"
 import { MyHeader } from "./MyHeader"
 import { BasicRoute } from "../router"
 const { Sider } = Layout
-
+const { SubMenu } = Menu
 class MyLayout extends React.Component {
   state = {
     collapsed: false,
@@ -39,7 +39,7 @@ class MyLayout extends React.Component {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className="site-layout">
+        <Layout className="site-layout" style={{ backgroundColor: "#fff" }}>
           <MyHeader />
           <MyContent>
             <BasicRoute />

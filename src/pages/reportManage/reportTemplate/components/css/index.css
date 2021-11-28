@@ -1,0 +1,18 @@
+ul,li{
+    list-style: none;
+    padding: 20px 20px;
+}
+.list .item {
+    display: flex;
+    align-items: center;
+    background: #eaeaea;
+    margin: 10px 0px ;
+}
+.list .item .info{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+.list .item .info .oper-list{
+    display: flex;
+}

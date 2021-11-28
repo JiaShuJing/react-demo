@@ -1,38 +1,38 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
 import { reportManage } from "./pages/reportManage"
-import { autoTest } from "./pages/autoTest"
+import { AutoTest } from "./pages/autoTest"
 import { onlineQuality } from "./pages/onlineQuality"
-import { interview } from "./pages/interview"
+import { Interview } from "./pages/interview"
 
 const routes = [
   {
     path: "/reportManage",
-    component: { reportManage },
+    component: reportManage,
   },
   {
     path: "/autoTest",
-    component: { autoTest },
+    component: AutoTest,
   },
   {
     path: "/onlineQuality",
-    component: { onlineQuality },
+    component: onlineQuality,
   },
   {
     path: "/interview",
-    component: { interview },
+    component: Interview,
   },
 ]
 
 export const BasicRoute = () => {
   return (
     <Switch>
-      <Route path="/reportManage" component={reportManage} />
+      {/* <Route path="/reportManage" component={reportManage} />
       <Route path="/autoTest" component={autoTest} />
-      <Route path="/onlineQuality" component={onlineQuality} />
-      {/* {routes.map((route, i) => (
-        <Route key={i} {...route} />
-      ))} */}
+      <Route path="/onlineQuality" component={onlineQuality} /> */}
+      {routes.map((route, i) => (
+        <Route key={i} {...route} render={() => {}} />
+      ))}
     </Switch>
   )
 }
