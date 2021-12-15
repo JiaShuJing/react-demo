@@ -1,6 +1,6 @@
 import { Layout } from "antd"
 const { Content } = Layout
-
+//@ts-ignore
 export const MyContent = (props) => {
   return (
     <Content

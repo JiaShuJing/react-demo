@@ -1,9 +1,10 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
 import { reportManage } from "./pages/reportManage"
-import { AutoTest } from "@/pages/autoTest"
+import { FlowReplay } from "./pages/flowReplay"
 import { onlineQuality } from "./pages/onlineQuality"
-import { Interview } from "./pages/interview"
+import { ReduxTest } from "./pages/reduxTest"
+import { MockGateway } from "./pages/mockGateway"
 
 const routes = [
   {
@@ -11,26 +12,28 @@ const routes = [
     component: reportManage,
   },
   {
-    path: "/autoTest",
-    component: AutoTest,
+    path: "/flowReplay",
+    component: FlowReplay,
   },
   {
     path: "/onlineQuality",
     component: onlineQuality,
   },
   {
-    path: "/interview",
-    component: Interview,
+    path: "/reduxTest",
+    component: ReduxTest,
+  },
+  {
+    path: "/mockGateway",
+    component: MockGateway,
   },
 ]
 
 export const BasicRoute = () => {
   return (
     <Switch>
-      {/* <Route path="/reportManage" component={reportManage} />
-      <Route path="/autoTest" component={autoTest} />
-      <Route path="/onlineQuality" component={onlineQuality} /> */}
       {routes.map((route, i) => (
+        //@ts-ignore
         <Route key={i} {...route} render={() => {}} />
       ))}
     </Switch>

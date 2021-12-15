@@ -32,6 +32,7 @@ const res = [
 //   })
 //   return res
 // }
+//@ts-ignore
 const jsonToTreeData = (json) => {
   const res = []
   if (json instanceof Object) {
@@ -42,6 +43,7 @@ const jsonToTreeData = (json) => {
       }
 
       if (json[key] instanceof Object) {
+        //@ts-ignore
         newObj["children"] = jsonToTreeData(json[key]) || []
         console.log(1111)
       }
@@ -58,7 +60,7 @@ export const TreeDemo = () => {
   const [checkedKeys, setCheckedKeys] = useState(["0-0-0"])
   const [selectedKeys, setSelectedKeys] = useState([])
   const [autoExpandParent, setAutoExpandParent] = useState(true)
-
+  //@ts-ignore
   const onExpand = (expandedKeysValue) => {
     console.log("onExpand", expandedKeysValue) // if not set autoExpandParent to false, if children expanded, parent can not collapse.
     // or, you can remove all expanded children keys.
@@ -66,12 +68,12 @@ export const TreeDemo = () => {
     setExpandedKeys(expandedKeysValue)
     setAutoExpandParent(false)
   }
-
+  //@ts-ignore
   const onCheck = (checkedKeysValue) => {
     console.log("onCheck", checkedKeysValue)
     setCheckedKeys(checkedKeysValue)
   }
-
+  //@ts-ignore
   const onSelect = (selectedKeysValue, info) => {
     console.log("onSelect", info)
     setSelectedKeys(selectedKeysValue)

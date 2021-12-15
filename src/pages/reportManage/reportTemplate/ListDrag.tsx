@@ -4,9 +4,9 @@ import { DndProvider } from "react-dnd"
 
 import { HTML5Backend } from "react-dnd-html5-backend"
 import List from "./components/DndComponents"
-import "./css/index.css"
+import "./css/index.less"
 //https://blog.csdn.net/gaofeng6565/article/details/115697473
-
+//@ts-ignore
 function ListDrag({ list, setList }) {
   const [form] = Form.useForm()
   const [activeItem, setActiveItem] = useState(0)
@@ -30,17 +30,22 @@ function ListDrag({ list, setList }) {
   const handleCancel = () => {
     setIsModalVisible(false)
   }
+  //@ts-ignore
   const onDropEnd = (list, fromIndex, toIndex) => {
     setList([...list])
   }
+  //@ts-ignore
   const onDelete = (list) => {
     setList([...list])
   }
+  //@ts-ignore
   const onClick = (item) => {
+    //@ts-ignore
     if (item.id !== activeItem.id) {
       setActiveItem(item)
     }
   }
+  //@ts-ignore
   const onAdd = (type) => {
     setIsModalVisible(true)
     setFormItemType(type)

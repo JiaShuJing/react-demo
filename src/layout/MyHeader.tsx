@@ -1,4 +1,3 @@
-import { React } from "react"
 import { Dropdown, Menu, Layout } from "antd"
 import { DownOutlined } from "@ant-design/icons"
 import { MenuFoldOutlined } from "@ant-design/icons"

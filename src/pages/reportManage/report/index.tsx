@@ -3,6 +3,7 @@ import { Button, Modal, Input, Select, DatePicker, message, Upload, Form } from 
 import { request } from "../../../utils/api"
 import { UploadOutlined } from "@ant-design/icons"
 import { PersonSelect } from "../reportTemplate/components/PersonSelect"
+//@ts-ignore
 export const Report = ({ reportType }) => {
   const [form] = Form.useForm()
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -28,7 +29,7 @@ export const Report = ({ reportType }) => {
     setIsModalVisible(true)
   }
   const reportTemplate = request("/getReportTemplate")
-  const displayFormItem = (item) => {
+  const displayFormItem = (item: any) => {
     const { TextArea } = Input
     let el = <Input />
     switch (item.type) {
@@ -36,7 +37,7 @@ export const Report = ({ reportType }) => {
         el = <Select />
         break
       case "SelectPerson":
-        el = (<PersonSelect />)
+        el = <PersonSelect />
         break
       case "DatePicker":
         el = <DatePicker />
@@ -51,7 +52,7 @@ export const Report = ({ reportType }) => {
           headers: {
             authorization: "authorization-text",
           },
-          onChange(info) {
+          onChange(info: any) {
             if (info.file.status !== "uploading") {
               console.log(info.file, info.fileList)
             }
@@ -85,9 +86,8 @@ export const Report = ({ reportType }) => {
         创建提测报告
       </Button>
       <Modal width="800px" title={`创建${reportType}`} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <Form style={{ width: "600px" }} form={form}  labelCol={{ span: 4 }}
-      wrapperCol={{ span: 16 }}>
-          {reportTemplate.map((formItem) => {
+        <Form style={{ width: "600px" }} form={form} labelCol={{ span: 4 }} wrapperCol={{ span: 16 }}>
+          {reportTemplate.map((formItem: any) => {
             //执行函数
             return displayFormItem(formItem)
           })}

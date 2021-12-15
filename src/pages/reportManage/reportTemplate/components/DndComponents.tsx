@@ -5,7 +5,7 @@ import { UploadOutlined } from "@ant-design/icons"
 // import classnames from "classnames";
 import "./css/index.css"
 import { PersonSelect } from "./PersonSelect"
-function Item(props) {
+function Item(props: any) {
   const {
     // 这些 props 由 React DnD注入，参考`collect`函数定义
     isDragging,
@@ -22,6 +22,7 @@ function Item(props) {
     ...restProps
   } = props
   const opacity = isDragging ? 0.5 : 1
+  //@ts-ignore
   const onRemove = (event) => {
     event.stopPropagation()
     remove(item)
@@ -47,12 +48,12 @@ function Item(props) {
 const type = "item"
 const dragSpec = {
   // 拖动开始时，返回描述 source 数据。后续通过 monitor.getItem() 获得
-  beginDrag: (props) => ({
+  beginDrag: (props: any) => ({
     id: props.id,
     originalIndex: props.find(props.id).index,
   }),
   // 拖动停止时，处理 source 数据
-  endDrag(props, monitor) {
+  endDrag(props: any, monitor: any) {
     const { id: droppedId, originalIndex } = monitor.getItem()
     const didDrop = monitor.didDrop()
     // source 是否已经放置在 target
@@ -62,14 +63,14 @@ const dragSpec = {
     return props.change(droppedId, originalIndex)
   },
 }
-const dragCollect = (connect, monitor) => ({
+const dragCollect = (connect: any, monitor: any) => ({
   connectDragSource: connect.dragSource(), // 用于包装需要拖动的组件
   connectDragPreview: connect.dragPreview(), // 用于包装需要拖动跟随预览的组件
   isDragging: monitor.isDragging(), // 用于判断是否处于拖动状态
 })
 const dropSpec = {
   canDrop: () => false, // item 不处理 drop
-  hover(props, monitor) {
+  hover(props: any, monitor: any) {
     const { id: draggedId } = monitor.getItem()
     const { id: overId } = props
     // 如果 source item 与 target item 不同，则交换位置并重新排序
@@ -79,15 +80,15 @@ const dropSpec = {
     }
   },
 }
-const dropCollect = (connect, monitor) => ({
+const dropCollect = (connect: any, monitor: any) => ({
   connectDropTarget: connect.dropTarget(), // 用于包装需接收拖拽的组件
 })
 const DndItem = DropTarget(type, dropSpec, dropCollect)(DragSource(type, dragSpec, dragCollect)(Item))
-function List(props) {
+function List(props: any) {
   let { list: propsList, activeItem, connectDropTarget } = props
   propsList =
     propsList.length > 0 &&
-    propsList.map((item) => {
+    propsList.map((item: any) => {
       const isActive = activeItem.id === item.id
       item = isActive ? activeItem : item
       item.active = isActive
@@ -99,38 +100,39 @@ function List(props) {
       setList(propsList)
     }
   }, [propsList])
-  const find = (id) => {
+  const find = (id: any) => {
+    //@ts-ignore
     const item = list.find((c) => `${c.id}` === id)
     return {
       item,
       index: list.indexOf(item),
     }
   }
-  const move = (id, toIndex) => {
+  const move = (id: any, toIndex: any) => {
     const { item, index } = find(id)
     list.splice(index, 1)
     list.splice(toIndex, 0, item)
     setList([...list])
   }
-  const change = (id, fromIndex) => {
+  const change = (id: any, fromIndex: any) => {
     const { index: toIndex } = find(id)
     props.onDropEnd(list, fromIndex, toIndex)
   }
-  const remove = (item) => {
-    const newList = list.filter((it) => it.id !== item.id)
+  const remove = (item: any) => {
+    const newList = list.filter((it: any) => it.id !== item.id)
     setList(newList)
     props.onDelete(newList)
   }
-  const onClick = (event) => {
+  const onClick = (event: any) => {
     const { id } = event.currentTarget
     const { item } = find(id)
     props.onClick(item)
   }
-  const onFinish = (values) => {
+  const onFinish = (values: any) => {
     console.log("Received values of form:", values)
   }
 
-  const formItemType = (type) => {
+  const formItemType = (type: any) => {
     const { TextArea } = Input
     let el = <Input />
     switch (type) {
@@ -153,7 +155,7 @@ function List(props) {
           headers: {
             authorization: "authorization-text",
           },
-          onChange(info) {
+          onChange(info: any) {
             if (info.file.status !== "uploading") {
               console.log(info.file, info.fileList)
             }
@@ -180,7 +182,7 @@ function List(props) {
       {/* 表单拖拽 */}
       <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
         {list &&
-          list.map((item, index) => {
+          list.map((item: any, index: any) => {
             return (
               <Space key={item.id} style={{ display: "flex", marginBottom: 0 }} align="baseline">
                 <Form.Item label={item.title} name={item.title} style={{ width: "200px" }}>
